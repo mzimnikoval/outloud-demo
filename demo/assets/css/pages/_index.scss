@@ -1,0 +1,29 @@
+/*
+
+Styles for index.vue page
+
+*/
+
+body {
+
+    background: $body-gradient-start;
+    background: linear-gradient(118deg, $body-gradient-start 0%, $body-gradient-end 100%);
+
+    margin: 0;
+
+    main {
+        width: 100%;
+        min-height: 100vh;
+
+        display: grid;
+        place-items: center;
+    }
+
+    .box-wrapper {
+        padding: 6.25rem;
+
+        border-radius: 1.5rem;
+        box-shadow: 0 2.5rem 3.75rem 0 rgba($black, .04);
+    }
+
+}
