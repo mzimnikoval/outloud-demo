@@ -2,12 +2,15 @@
 	<main>
 		<section class="box-wrapper bg-white">
 			<h1>Registration Form</h1>
-			<form action="">
+			<form @submit.prevent="submit">
 				<div class="row">
 					<div class="col">
-						<div class="input-group">
-							<input type="email" name="email" id="">	
+						<div class="form-group" :class="{ 'form-group--error': $v.name.$error, 'form-group--filled' : name }">
+							<input class="form-group__input" v-model.trim="$v.name.$model"/>
+							<label for="">E-mail</label>
+							<span class="focus-border"></span>
 						</div>
+						<small class="error" v-if="!$v.name.required">Name is required</small>
 					</div>
 				</div>
 				<div class="row">
@@ -73,7 +76,37 @@
 </template>
 
 <script>
+import { required, minLength } from 'vuelidate/lib/validators'
+
 export default {
-	
+	data() {
+		return {
+			email: '',
+			password: '',
+			name: '',
+			submitStatus: null		
+		}
+	},
+	validations: {
+		name: {
+			required,
+			minLength: minLength(4)
+		}
+	},
+	methods: {
+		submit() {
+			console.log('submit!')
+			this.$v.$touch()
+			if (this.$v.$invalid) {
+				this.submitStatus = 'ERROR'
+			} else {
+				// do your submit logic here
+				this.submitStatus = 'PENDING'
+				setTimeout(() => {
+				this.submitStatus = 'OK'
+				}, 500)
+			}
+		}
+	},
 }
 </script>
