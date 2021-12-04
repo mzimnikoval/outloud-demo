@@ -25,5 +25,33 @@ $btn-bg-gradient-end: $purple;
     border-radius: 1rem;
 
     box-shadow: 0 0.25rem 0.875rem 0 rgba($btn-bg-gradient-start, .2);
-    
+
+    cursor: pointer;    
+    transition: all .3s ease-in-out;
+
+    &:hover {
+        box-shadow: 0px 2rem 2.75rem -0.812rem rgba($btn-bg-gradient-start, .2);
+        background: linear-gradient(269deg, $btn-bg-gradient-end 0%, $btn-bg-gradient-start 100%);
+    }
+
+    margin-right: 2.5rem;
+    flex: 0 0 auto;
+
+    @media only screen and (max-width: 767px) {
+        margin-top: 1.875rem;
+    }
+}
+
+.success-badge {
+    width: 6.75rem;
+    height: 6.75rem;
+    background-color: $green;
+    border-radius: 50%;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1.125rem 1.875rem 0 rgba($green, 0.25);
+
+    margin-bottom: 2rem;
 }

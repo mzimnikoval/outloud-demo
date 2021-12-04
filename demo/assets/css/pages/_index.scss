@@ -17,13 +17,52 @@ body {
 
         display: grid;
         place-items: center;
+
+        @media only screen and (max-width: 767px) {
+            display: block;
+            width: auto;
+            padding: 1.25rem;
+        }
     }
 
     .box-wrapper {
         padding: 6.25rem;
+        width: 47%;
+        height: 52%;
+
+        display: flex;
+        align-items: center;
 
         border-radius: 1.5rem;
         box-shadow: 0 2.5rem 3.75rem 0 rgba($black, .04);
+
+        @media only screen and (max-width: 767px) {
+            width: auto;   
+            height: auto;      
+            display: block; 
+            padding: 1.25rem;
+        }
     }
 
+    .separator {
+        border: 1px solid $light-blue-300;
+    }
+
+    .form-success {
+        text-align: center;
+        width: 75%;
+        margin: 0 auto;
+
+        @media only screen and (max-width: 767px) {
+            width: 100%;
+        }
+    }
+
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
 }

@@ -17,5 +17,43 @@
 
     .col {
         flex: 1 0 0%;
+        position: relative;
+
+        @media only screen and (max-width: 767px) {
+            width: 100%;
+            flex: unset;
+        }
     }
+}
+
+.d-flex {
+    display: flex;
+
+    @media only screen and (max-width: 767px) {
+        flex-direction: column;
+    }
+}
+
+.flex-xs-row {
+    @media only screen and (max-width: 767px) {
+        flex-direction: row;
+    }
+}
+
+.flex-xs-reverse {
+    @media only screen and (max-width: 767px) {
+        flex-direction: column-reverse;
+    }
+}
+
+.justify-space-between {
+    justify-content: space-between;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+.h-60 {
+    height: 2.25rem;
 }

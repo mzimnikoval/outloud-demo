@@ -5,6 +5,7 @@ Styles for forms components
 */
 
 $input-bg-color:                $light-blue-100;
+$input-color:                   $dark-grey-100;
 $input-border-radius:           0.875rem;
 $input-label-color:             $grey-blue;
 
@@ -16,6 +17,7 @@ $input-border-color--focus:     $primary;
     position: relative;
     border-radius: $input-border-radius;
     overflow: hidden;
+    z-index: 5;
 
     &__input {
         display: block;
@@ -30,7 +32,7 @@ $input-border-color--focus:     $primary;
 
         font-size: 1rem;
         line-height: 1.25rem;
-        color: $dark-grey-100;
+        color: $input-color;
     
         box-sizing: border-box;
 
@@ -94,41 +96,279 @@ $input-border-color--focus:     $primary;
 
         transition: all .3s ease-in-out;
     }
-
-    animation-name: shakeError;
-    animation-fill-mode: forwards;
-    animation-duration: .6s;
-    animation-timing-function: ease-in-out;
-
     &.form-group--error + .error {
-        animation-name: showError;
-        animation-duration: .3s;
-        animation-timing-function: ease-in-out;
+        // animation-name: showError;
+        // animation-duration: .15s;
+        // animation-timing-function: ease-in-out;
 
-        opacity: 1;
-        height: 100%;
+        display: block;
+    }
+    &.form-group--error {
+        input {
+            border-color: $danger;
+            color: $danger;
+
+            & ~.focus-border {
+                background-color: $danger;
+            }
+        }
+    }
+
+    svg {
+        position: absolute;
+        top: 50%;
+        right: 1.5rem;
+
+        transform: translateY(-50%);
+
+        cursor: pointer;
+
+        path {
+            transition: all .3s ease-in-out;
+        }
+
+        &:hover {
+            path {
+                stroke: $grey-blue;
+            }
+        }
+
+        &.active {
+            path {
+                stroke: $grey-blue;
+            }
+        }
     }
 }
 
+.form-select {
+    position: relative;
+    z-index: 5;
+
+    input {
+        display: none;
+    }
+
+    .form-group__input {
+        padding: 0 1.125rem;
+
+        color: $input-label-color;
+        line-height: 3.875rem;
+
+        cursor: pointer;
+    }
+
+    &--filled {
+        .form-group__input {
+            color: $input-color;
+
+            background-color: $white;
+            border: none;
+            box-shadow: 0px 2px 5px 0 rgba(0, 0, 0, 0.1);
+        }
+    }
+    svg {
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+    }    
+}
+.form-select--error + .error {
+    display: block;
+}
+
+.popover-opened {
+    .form-group__input {
+        padding: 0 1.125rem;
+
+        color: $input-label-color;
+        background-color: $white;
+        line-height: 3.875rem;
+
+        cursor: pointer;
+        border-radius: 0.875rem 0.875rem 0 0;
+    }
+
+    svg {
+        transform: rotate(180deg);
+    }    
+}
+
 .error {
-    display: inline-block;
-    opacity: 0;
-    height: 0;
-    overflow: hidden;
+    display: none;
     color: $danger;
     font-size: 1rem;
     line-height: 1.25rem;
-    margin: 0.312rem 0 0 1.125rem;    
+    margin: 0;
+    left: 2rem;
+    padding-left: 1.125rem;
+    padding-top: 0.25rem;
+
+    // position: absolute;
+    // transform: translateY(-20px);
 }
 
 @keyframes showError {
     from {
-      opacity: 0;
-      height: 0;
+        transform: translateY(-20px);
     }
   
     to {
-      opacity: 1;
-      height: 100%;
+        transform: translateY(2px);
     }
-  }
+}
+
+label {
+    color: $dark-grey-200;
+    font-size: 1rem;
+}
+
+.relative {
+    position: relative;
+
+    .popper {
+        right: 0;
+        min-width: 325px;
+        padding: 0;
+        border: none;
+        margin: 0 !important;        
+        background-color: $white;
+        text-align: left;
+        box-shadow: none;
+
+        height: 130px;
+        overflow-y: auto;
+
+        border: 1px solid $input-border-color;
+        border-top: none;
+
+        &__arrow {
+            display: none;
+        }
+
+        &__item {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            padding: 0.937rem 1.125rem;
+            color: $input-label-color;
+            cursor: pointer;
+
+            img {
+                width: 1.25rem;
+                height: 1.25rem;
+                border-radius: .25rem;
+                margin-right: 1.5rem;
+            }
+
+            &:first-child {
+                padding-top: 0.75rem;
+            }
+        }
+
+        &[x-placement^="top"] {
+            border-radius: .875rem .875rem 0 0 ;
+        }
+
+        &[x-placement^="bottom"] {
+            border-radius: 0 0 .875rem .875rem;
+        }
+
+        &__wrapper {
+            padding-top: 1.125rem;
+        }
+    }
+}
+
+.checkboxx {
+    --background: #fff;
+    --border: #D1D6EE;
+    --border-hover: #F6F8FA;
+    --border-active: #1E2235;
+    --tick: #fff;
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    .relative {
+        margin-right: 1.125rem;
+    }
+
+    span {
+        color: $dark-grey-200;
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+
+    input,
+    svg {
+        width: 1.375rem;
+        height: 1.375rem;
+        display: block;
+    }
+    input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        position: relative;
+        outline: none;
+        background: $input-bg-color;
+        border: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        border-radius: 0.375rem;
+        transition: box-shadow .3s;
+        box-shadow: inset 0 0 0 var(--s, 0) var(--b, var(--border));
+        &:hover {
+            --s: 1px;
+            --b: var(--border-hover);
+        }
+        &:checked {
+            --b: var(--border-active);
+            box-shadow: inset 0 0 0 var(--s, 0) $primary;
+        }
+    }
+    svg {
+        pointer-events: none;
+        fill: none;
+        stroke-width: 2px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke: var(--stroke, var(--border-active));
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 21px;
+        height: 21px;
+        transform: scale(var(--scale, 1)) translateZ(0);
+    }
+    &.bounce {
+        --stroke: var(--tick);
+        input {
+            &:checked {
+                --s: 11px;
+                & + svg {
+                    animation: bounce .4s linear forwards .2s;
+                }
+            }
+        }
+        svg {
+            --scale: 0;
+        }
+    }
+}
+
+@keyframes bounce {
+    50% {
+        transform: scale(1.2);
+    }
+    75% {
+        transform: scale(.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+
